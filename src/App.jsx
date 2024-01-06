@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import Card from "./components/Card";
 import data from "./data/data";
-import Filter from "./components/Filter";
-import SearchBar from "./components/SearchBar";
+import {Card,Filter,SearchBar} from './components'
 
 function App() {
   const [category, setCategory] = useState("All");
@@ -40,43 +38,15 @@ function App() {
   }
 
   function searchFilter() {
-    let searchArr = searchText.toLowerCase().split(" ");
-    let newShoes = [];
-    data.map((shoe) => {
-      for (let text of searchArr) {
-        let titleArr = shoe["title"].toLowerCase().split(" ");
-        if (titleArr.includes(text)) {
-          newShoes.push(shoe);
-          break;
-        }
-      }
-    });
-
+    let newShoes = data.filter((shoe) => (shoe.title.toLowerCase().indexOf(searchText.toLowerCase()))!==-1);
     setShoes(newShoes);
-    setSearchText("");
+    setSearchText(() => "");
   }
   function searchFilterOnChange() {
-    let searchArr = searchText.toLowerCase().split(" ");
-    let newShoes = [];
-    data.map((shoe) => {
-      for (let text of searchArr) {
-        let titleArr = shoe["title"].toLowerCase().split(" ");
-        if (titleArr.includes(text)) {
-          newShoes.push(shoe);
-          break;
-        }
-      }
-    });
-
+    let newShoes = data.filter((shoe) => (shoe.title.toLowerCase().indexOf(searchText.toLowerCase()))!==-1);
     setShoes(newShoes);
-    // setSearchText("");
   }
 
-  function handleInputKeyDown(e) {
-    if(e.key === 'Enter') {
-      searchFilter();
-    }
-  }
   return (
     <>
       <div className="w-11/12 m-auto p-10 text-center flex flex-row space-x-6 ">
