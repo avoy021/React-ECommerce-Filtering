@@ -3,26 +3,26 @@ import data from "./data/data";
 import {Card,Filter,SearchBar} from './components'
 
 function App() {
-  const [category, setCategory] = useState("All");
-  const [price, setPrice] = useState("All");
-  const [color, setColor] = useState("All");
+  const [category, setCategory] = useState("All-Category");
+  const [price, setPrice] = useState("All-Price");
+  const [color, setColor] = useState("All-Color");
   const [shoes, setShoes] = useState(data);
   const [searchText, setSearchText] = useState("");
 
   function applyFilter() {
     console.log("Apply filter");
     let newShoes = data;
-    if (category !== "All") {
+    if (category !== "All-Category") {
       newShoes = newShoes.filter(
         (shoe) => shoe["category"].toLowerCase() === category.toLowerCase()
       );
     }
-    if (color !== "All") {
+    if (color !== "All-Color") {
       newShoes = newShoes.filter(
         (shoe) => shoe["color"].toLowerCase() === color.toLowerCase()
       );
     }
-    if (price !== "All") {
+    if (price !== "All-Price") {
       let temp = price.split(/-| /);
       let high = Number(temp[temp.length - 1]);
       if (high === 151) {
@@ -50,25 +50,22 @@ function App() {
   return (
     <>
       <div className="w-11/12 m-auto p-10 text-center flex flex-row space-x-6 ">
-        <div className="shoe-filters flex flex-col w-1/6 mt-7 sticky left-3 top-2.5 h-full d-block">
-          <div className="filter-category mb-5">
-            <div className="font-bold mb-1">Category</div>
+        <div className="shoe-filters flex flex-col w-1/6 mt-7 sticky left-3 top-2.5 h-full">
+          <div className="mb-5">
             <Filter
               Criteria={["Sneakers", "Flats", "Sandals", "Heels"]}
               filterName={"Category"}
               setCriteria={setCategory}
             ></Filter>
           </div>
-          <div className="filter-price mb-5">
-            <div className="font-bold">Price</div>
+          <div className="mb-5">
             <Filter
               Criteria={["1-50", "51-100", "101-150", "Above 151"]}
               filterName={"Price"}
               setCriteria={setPrice}
             ></Filter>
           </div>
-          <div className="filter-colors mb-4">
-            <div className="font-bold">Colors</div>
+          <div className="mb-4">
             <Filter
               Criteria={["Black", "Blue", "Red", "Green"]}
               filterName={"Colors"}

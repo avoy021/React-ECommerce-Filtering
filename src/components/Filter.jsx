@@ -1,10 +1,11 @@
 const Filter = ({Criteria,filterName,setCriteria}) => {
     return (
         <>
-            <div className="category flex flex-col">
-                <label htmlFor="All">
+            <div className="flex flex-col">
+            <div className="font-bold mb-1">{filterName}</div>
+                <label htmlFor={`All-${filterName}`}>
                     All{" "}  
-                    <input type="radio" name={filterName} id="All" value="All" onChange={(e) => setCriteria(e.target.value)} /> 
+                    <input type="radio" name={filterName} id={`All-${filterName}`} value={`All-${filterName}`} onChange={(e) => setCriteria(e.target.value)} /> 
                 </label>
                 {
                     Criteria.map((criteriaName,index) => {
